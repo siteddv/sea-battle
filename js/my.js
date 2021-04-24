@@ -26,15 +26,15 @@ const model = {
    shipsSunk: 0,
 
    ships: [
-      ship1 = { location: [0, 0, 0], hits: ['', '', ''], },
-      ship2 = { location: [0, 0, 0], hits: ['', '', ''], },
-      ship3 = { location: [0, 0, 0], hits: ['', '', ''], },
+      ship1 = { locations: [0, 0, 0], hits: ['', '', ''], },
+      ship2 = { locations: [0, 0, 0], hits: ['', '', ''], },
+      ship3 = { locations: [0, 0, 0], hits: ['', '', ''], },
    ],
 
    fire: function (coordinatesToFire) {
       for (const shipName in this.ships) {
          const ship = this.ships[shipName];
-         const shipLocation = ship.location;
+         const shipLocation = ship.locations;
          const indexToFire = shipLocation.indexOf(coordinatesToFire);
 
          if (indexToFire >= 0) {
@@ -64,6 +64,7 @@ const model = {
    },
 
    generateShipLocations: function () {
+      debugger;
       let locations;
       for (let i = 0; i < this.numShips; i++) {
          do {
@@ -103,7 +104,7 @@ const model = {
          const ship = this.ships[i];
          console.log(ship);
          for (var j = 0; j < location.length; j++) {
-            if (ship.location.indexOf(locations[j]) >= 0) {
+            if (ship.locations.indexOf(locations[j]) >= 0) {
                return true;
             }
          }
@@ -130,10 +131,17 @@ const controller = {
 
 function parseGuess(guess) {
    const alphabet = ["A", "B", "C", "D", "E", "F", "G"];
-
    if (guess === null || guess.length !== 2) {
       alert("You entered the wrong coordinates");
    } else {
+      console.log(guess[1].toUpperCase());
+      if (guess.charAt(0) >= '0'.charAt(0) && guess.charAt(0) <= '6'.charAt(0) &&
+         guess[1].toUpperCase().charAt(0) >= 'A'.charAt(0) && guess[1].toUpperCase().charAt(0) <= 'G'.charAt(0)) {
+
+         guess = guess[1] + guess[0];
+      }
+
+      guess = guess[0].toUpperCase() + guess[1];
       firstChar = guess.charAt(0); //извлекаем со строки первый символ
       const row = alphabet.indexOf(firstChar);
       const column = guess.charAt(1);
@@ -157,7 +165,6 @@ function init() {
    guessInput.onkeypress = handleKeyPress;
 
    model.generateShipLocations();
-   debugger;
    alert("Welcome to the page of the game \"Sea Battle\"!\n" +
       "The game is created only for playing against bots.\n" +
       "The location of the ships is random.\n" +
