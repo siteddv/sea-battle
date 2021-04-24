@@ -1,9 +1,6 @@
 # "Sea Battle" web game
 
 ## About
-###### # ActiveBox
-
-## About
 ###### Web game "Sea Battle" is in native JavaScript.
 ###### I made this web game to practice my knowledge in native JavaScript.
 
