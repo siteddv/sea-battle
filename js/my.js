@@ -20,10 +20,10 @@ const view = {
 
 const model = {
 
-   boardSize: 7,   // Размер игрового поля
-   numShips: 3,    // Количество кораблей в игре
-   shipLength: 3,  // Длина корабля в клетках
-   shipsSunk: 0,   // Количество потопленных кораблей
+   boardSize: 7,
+   numShips: 3,
+   shipLength: 3,
+   shipsSunk: 0,
 
    ships: [
       ship1 = { location: [0, 0, 0], hits: ['', '', ''], },
@@ -101,8 +101,9 @@ const model = {
    collision: function (locations) {
       for (let i = 0; i < this.numShips; i++) {
          const ship = this.ships[i];
-         for (var j = 0; j < locations.length; j++) {
-            if (ship.locations.indexOf(locations[j]) >= 0) {
+         console.log(ship);
+         for (var j = 0; j < location.length; j++) {
+            if (ship.location.indexOf(locations[j]) >= 0) {
                return true;
             }
          }
@@ -121,7 +122,7 @@ const controller = {
          this.gusses++;
          const hit = model.fire(location);
          if (hit && model.shipsSunk === model.numShips) {
-            view.displayMessage("Вы потопили все корабли за: " + this.gusses + " выстрелов");
+            view.displayMessage("You have sunk all the ships in " + this.gusses + " shots.");
          }
       }
    }
@@ -131,16 +132,16 @@ function parseGuess(guess) {
    const alphabet = ["A", "B", "C", "D", "E", "F", "G"];
 
    if (guess === null || guess.length !== 2) {
-      alert("Вы ввели неверные координаты");
+      alert("You entered the wrong coordinates");
    } else {
       firstChar = guess.charAt(0); //извлекаем со строки первый символ
       const row = alphabet.indexOf(firstChar);
       const column = guess.charAt(1);
 
       if (isNaN(row) || isNaN(column)) {
-         alert("Вы ввели неверные координаты");
+         alert("You entered the wrong coordinates");
       } else if (row < 0 || row >= model.boardSize || column < 0 || column >= model.boardSize) {
-         alert("Вы ввели неверные координаты");
+         alert("You entered the wrong coordinates");
       } else {
          return row + column;
       }
@@ -156,6 +157,11 @@ function init() {
    guessInput.onkeypress = handleKeyPress;
 
    model.generateShipLocations();
+   debugger;
+   alert("Welcome to the page of the game \"Sea Battle\"!\n" +
+      "The game is created only for playing against bots.\n" +
+      "The location of the ships is random.\n" +
+      "Good luck!");
 };
 
 function handleFireButton() {
