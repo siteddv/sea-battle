@@ -17,7 +17,7 @@
 
 ## Links
 ###### [Link to the site](https://vino-gradom.github.io/sea-battle/)
-###### [Download ZIP](https://github.com/sea-battle/activebox/archive/refs/heads/main.zip)
+###### [Download ZIP](https://github.com/vino-gradom/sea-battle/archive/refs/heads/master.zip)
 
 ## How to clone the repository to a local machine?
 ###### 1) Move to desired folder
