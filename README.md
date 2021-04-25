@@ -1,7 +1,7 @@
 # "Sea Battle" web game
 
 ## About
-###### Web game "Sea Battle" is coded in native JavaScript using MVC architecture.
+###### Web game "Sea Battle" is coded in native HTML, CSS, JavaScript using MVC architecture.
 ###### I made this web game to practice my knowledge in native JavaScript.
 
 ## Interface
